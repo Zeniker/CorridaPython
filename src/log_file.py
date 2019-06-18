@@ -4,6 +4,7 @@ from lap import Lap
 
 
 class LogFile:
+    """Classe para ler o arquivo de log da corrida"""
 
     def get_pilot_data(self):
         log_file = open("log.txt", "r")

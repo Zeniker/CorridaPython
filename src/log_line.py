@@ -1,4 +1,6 @@
 class LogLine:
+    """Classe para obter informações das linhas do log"""
+
     HOUR_POSITION_END = 18
     PILOT_POSITION_END = 58
     LAP_NUMBER_POSITION_END = 64

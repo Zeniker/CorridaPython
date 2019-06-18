@@ -2,6 +2,8 @@ from datetime import timedelta
 
 
 class Pilot:
+    """Classe para guardar e calcular informações dos pilotos"""
+
     def __init__(self, code, name):
         self.__code = code
         self.__name = name

@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 
 class Lap:
+    """Classe para guardar informações das voltas realizadas durante a corrida"""
 
     def __init__(self, number, time, average_speed, hour):
         self.__number = int(number)
