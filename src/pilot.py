@@ -18,7 +18,10 @@ class Pilot:
         self._laps.sort(key=lambda k: k.get_number())
 
     def get_last_lap(self):
-        return self._laps[-1]
+        if len(self._laps) > 0:
+            return self._laps[-1]
+        else:
+            return None
 
     def sum_lap_time(self):
         lap_times = []
@@ -45,6 +48,10 @@ class Pilot:
 
     def get_interval_from_pilot(self, pilot):
         self_last_lap = self.get_last_lap()
+
+        if self_last_lap is None:
+            return 'N/D'
+
         target_last_lap = pilot.get_last_lap()
 
         if self_last_lap.get_number() != target_last_lap.get_number():
