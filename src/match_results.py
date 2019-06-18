@@ -1,57 +1,42 @@
-# Blauzen
-from log_line import LogLine
-from pilot import Pilot
-from lap import Lap
+from log_file import LogFile
+from datetime import timedelta
 
 
-def sort_pilots_by_hour(pilot):
+def sort_pilots(pilot):
     last_lap = pilot.get_last_lap()
     return last_lap.get_hour(), last_lap.get_number()
 
 
-log_file = open("log.txt", "r")
-print("Nome do arquivo: ", log_file.name)
-
-first_line = True
-
-list_of_pilots = {}
-
-for line in log_file:
-    if first_line:
-        first_line = not first_line
-        continue
-
-    log_line = LogLine(line)
-
-    if log_line.get_pilot_code() in list_of_pilots:
-        pilot = list_of_pilots.get(log_line.get_pilot_code())
-    else:
-        pilot = Pilot(log_line.get_pilot_code(), log_line.get_pilot_name())
-        list_of_pilots[pilot.get_code()] = pilot
-
-    lap = Lap(log_line.get_lap_number(), log_line.get_lap_time(), log_line.get_lap_average_speed(),
-              log_line.get_lap_hour())
-
-    pilot.add_lap(lap)
-
-log_file.close()
-
 ordem_chegada = []
 
-for code in list_of_pilots:
-    pilot = list_of_pilots[code]
+pilot_data = LogFile().get_pilot_data()
+
+for code in pilot_data:
+    pilot = pilot_data[code]
     last_lap = pilot.get_last_lap()
 
     ordem_chegada.append(pilot)
 
-ordem_chegada.sort(key=sort_pilots_by_hour)
+ordem_chegada.sort(key=sort_pilots)
+best_lap_time = timedelta()
 
+print("Informações dos pilotos:")
 for i in range(len(ordem_chegada)):
     pilot = ordem_chegada[i]
+
+    if best_lap_time == timedelta() or best_lap_time > pilot.get_best_lap_time():
+        best_lap_time = pilot.get_best_lap_time()
+
     resultado_piloto = "Posição Chegada: " + str(i+1) + "\t"
     resultado_piloto += "Código Piloto: " + pilot.get_code() + "\t"
     resultado_piloto += "Nome Piloto: " + pilot.get_name() + "\t"
     resultado_piloto += "Qtde Voltas Completadas: " + str(pilot.get_last_lap().get_number()) + "\t"
     resultado_piloto += "Tempo total de Prova: " + str(pilot.sum_lap_time()) + "\t"
+    resultado_piloto += "Melhor Volta: " + str(pilot.get_best_lap_time()) + "\t"
+    resultado_piloto += "Velocidade Média: " + str(pilot.get_average_match_speed()) + "\t"
+    resultado_piloto += "Tempo de Chegada após vencedor: " + str(pilot.get_interval_from_pilot(ordem_chegada[0])) + "\t"
 
     print(resultado_piloto)
+
+print("\nInformações gerais:")
+print("Melhor volta da corrida: " + str(best_lap_time))

@@ -5,8 +5,6 @@ class LogLine:
     LAP_TIME_POSITION_END = 96
     LAP_AVERAGE_SPEED_POSITION_END = 102
 
-    __line = ""
-
     def __init__(self, line):
         self.__line = line
 
