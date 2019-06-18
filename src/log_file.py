@@ -7,7 +7,6 @@ class LogFile:
 
     def get_pilot_data(self):
         log_file = open("log.txt", "r")
-        print("Nome do arquivo: ", log_file.name)
 
         first_line = True
 
