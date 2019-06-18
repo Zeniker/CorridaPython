@@ -1,1 +1,5 @@
-Para testar, rodar o arquivo match_results.py.
+Para executar o programa, utilizar o seguinte comando a partir da pasta src:
+$ python3 match_results.py
+
+Para executar os testes, utilizar o seguinte comando a partir da pasta src:
+$ python3 -m unittest discover
