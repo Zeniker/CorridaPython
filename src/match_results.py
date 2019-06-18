@@ -34,7 +34,7 @@ for i in range(len(ordem_chegada)):
     resultado_piloto += "Tempo total de Prova: " + str(pilot.sum_lap_time()) + "\t"
     resultado_piloto += "Melhor Volta: " + str(pilot.get_best_lap_time()) + "\t"
     resultado_piloto += "Velocidade Média: " + str(pilot.get_average_match_speed()) + "\t"
-    resultado_piloto += "Tempo de Chegada após vencedor: " + str(pilot.get_interval_from_pilot(ordem_chegada[0])) + "\t"
+    resultado_piloto += "Tempo Chegada Após Vencedor: " + str(pilot.get_interval_from_pilot(ordem_chegada[0])) + "\t"
 
     print(resultado_piloto)
 

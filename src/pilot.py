@@ -1,7 +1,6 @@
 from datetime import timedelta
 
 
-# Classe do piloto
 class Pilot:
     def __init__(self, code, name):
         self.__code = code
